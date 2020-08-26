@@ -149,36 +149,22 @@ function* depthTraversalTree(root) {
  *
  */
 function* breadthTraversalTree(root) {
-    /* долго работает
-    *  let stack=[root];
+    let stack=[root];
     let n;
     while(stack.length>0) {
-        n = stack.pop();
+        n = stack.shift();
         yield n;
-          if (!n.children) {
+        if (!n.children) {
             continue;
-        }
-
-        for (let i = 0; i<n.children.lenght;i>=0; i--) {
+         }
+        //
+        // stack.push(...n.children);
+        for (let i =0; i <n.children.length; i++) {
             stack.push(n.children[i]);
-        }
-    }*/
-    let stack = [];
-    yield root;
-    if(root.children){
-        stack.push(...root.children.reverse());
-        while(stack.length > 0){
-            let tmp = [];
-            while(stack.length > 0){
-                let pop = stack.pop();
-                yield pop;
-                if(pop.children)
-                    tmp.push(...pop.children);
-            }
-            stack.push(...tmp.reverse())
         }
     }
 }
+
 
 /**
  * Merges two yield-style sorted sequences into the one sorted sequence.
