@@ -23,14 +23,14 @@
  *    console.log(r.getArea());   // => 200
  */
 function Rectangle(width, height) {
-            this.width = width;
-            this.height = height;
-            this.getArea = getArea;
-            //Rectangle.prototype.getArea = function () { return this.a + this.b + this.c; }; можно и так
+    this.width = width;
+    this.height = height;
+    this.getArea = getArea;
+    //Rectangle.prototype.getArea = function () { return this.a + this.b + this.c; };
 }
 
-function getArea(){
-    return this.width*this.height;
+function getArea() {
+    return this.width * this.height;
 }
 
 /**
@@ -53,7 +53,7 @@ function getJSON(obj) {
  *
  * @param {Object} proto
  * @param {string} json
- * @return {Object}
+ * @return {object}
  *
  * @example
  *    var r = fromJSON(Rectangle.prototype, '{"width":10, "height":20}');
@@ -120,6 +120,7 @@ const cssSelectorBuilder = {
     pseudoElement: (value) => new myEl().pseudoElement(value),
     combine: (selector1, combinator, selector2) => new myEl().combine(selector1, combinator, selector2),
 };
+
 class myEl {
     constructor() {
         this.selector = '';
@@ -128,6 +129,7 @@ class myEl {
         this.orderError = 'Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element';
 
     }
+
     element(value) {
         this.checkType(1);
         this.selector += value;
