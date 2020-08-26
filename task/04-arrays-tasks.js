@@ -234,14 +234,14 @@ function toCsvText(arr) {
  *   f(x) = x * x
  * 
  * @param {array} arr
- * @return {number[]}
+ * @return {array}
  * 
  * @example
  *   [ 0, 1, 2, 3, 4, 5 ] => [ 0, 1, 4, 9, 16, 25 ]
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-   return arr.map(fields => fields*fields);
+   return arr.map((el, idx, arr) => el*el)
 }
 
 
