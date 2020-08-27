@@ -69,18 +69,11 @@ function getPowerFunction(exponent) {
  *   getPolynom()      => null
  */
 function getPolynom() {
-    let ln = arguments.length;
-
-    switch (ln) {
-        case 1:
-            return (x) => arguments[0];
-        case 2:
-            return (x) => (arguments[0] * x + arguments[1]);
-        case 3:
-            return (x) => (arguments[0] * Math.pow(x, 2) + arguments[1] * x + arguments[2]);
-        default:
-            return () => null;
-    }
+    return (x) => {
+        let res = 0;
+        [...arguments].map((el, i, arr) => res += el * Math.pow(x, arguments.length - i - 1));
+        return res;
+    };
 }
 
 
@@ -130,19 +123,15 @@ function memoize(func) {
  * retryer() => 2
  */
 function retry(func, attempts) {
-
     function f(func, attempts) {
         if (attempts > 0) {
             try {
                 func();
-                // eslint-disable-next-line no-empty
             } catch (e) {
-
+                return f(func, --attempts);
             }
-            return f(func, --attempts);
         }
         return func;
-
     }
 
     return f(func, attempts);
